@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
-import App from "../App";
+import { Navigate } from "react-router-dom";
 import "./pageStyles.css";
 
 function Login() {
