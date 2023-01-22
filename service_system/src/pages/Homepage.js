@@ -1,3 +1,6 @@
+import Login from "./Login"
 export default function Homepage(){
-    return <h1>Extintores Universales</h1>
+    return (
+        <Login/>
+    );
 }

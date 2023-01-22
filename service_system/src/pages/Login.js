@@ -9,28 +9,30 @@ function Login() {
   }
 
   return (
-    <div className="page">
-      <div className="cover">
-        <h1>Inicio de Sesión</h1>
-        <input
-          style={{ fontSize: 25, margin: 20 }}
-          placeholder="Nombre de usuario"
-        ></input>
-        <input
-          style={{ fontSize: 25, margin: 20 }}
-          placeholder="Contraseña"
-          type={"password"}
-        ></input>
-        <button
-          onClick={() => {
-            setGoToHomePage(true);
-          }}
-          style={{ fontSize: 25, margin: 20 }}
-        >
-          Iniciar Sesion
-        </button>
-      </div>
+    <body>
+      <div className="page">
+        <div className="cover">
+          <h1>Inicio de Sesión</h1>
+          <input
+            style={{ fontSize: 25, margin: 20 }}
+            placeholder="Nombre de usuario"
+          ></input>
+          <input
+            style={{ fontSize: 25, margin: 20 }}
+            placeholder="Contraseña"
+            type={"password"}
+          ></input>
+          <button
+            onClick={() => {
+              setGoToHomePage(true);
+            }}
+            style={{ fontSize: 25, margin: 20 }}
+          >
+            Iniciar Sesion
+          </button>
+        </div>
     </div>
+    </body>
   );
 }
 

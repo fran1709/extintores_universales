@@ -2,8 +2,8 @@ export default function Reportes(){
     return (
         <body>
             <h1>Reportes</h1>
-            <form>
-                <table align="center" border="1px solid black" >
+            <form alint-items="center">
+                <table margin="0" border="1px solid black">
                     <tr>
                         <th >#</th>
                         <th>Fecha</th>
