@@ -3,7 +3,6 @@ export default function Rutas() {
     <div>
       <h1>Planificación de Rutas</h1>
       <form>
-        <br></br>
         <h3>Ruta</h3> <br></br>
         <select>
           <option>Ciudad Quesada - Fortuna</option>
@@ -26,7 +25,7 @@ export default function Rutas() {
           <option>-</option>
         </select>
         <br></br><br></br>
-        <button>Asignar Ruta</button>
+        <button class="btn btn-primary">Asignar Ruta</button>
       </form>
     </div>
   );

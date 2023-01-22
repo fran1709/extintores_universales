@@ -5,34 +5,47 @@ export default function Activos() {
     <div>
       <h1>Visualizacion de Activos</h1>
       <form>
-        <table class="center" margin="0" border="1px solid black">
-          <tr>
-            <th>Nombre</th>
-            <th>Estado</th>
-            <th>Fecha ultimo uso</th>
-            <th>Ultimo responsable</th>
-          </tr>
-          <tr>
-            <td>Movil #1</td>
-            <td>No Disponible</td>
-            <td>20/02/2023</td>
-            <td>Francisco Ovares</td>
-          </tr>
-          <tr>
-            <td>Movil #2</td>
-            <td>Disponible</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>Equipo de recarga Movil</td>
-            <td>No Disponible</td>
-            <td>20/02/2023</td>
-            <td>Mariana Artavia</td>
-          </tr>
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Fecha ultimo uso</th>
+              <th scope="col">Ultimo responsable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Movil #1</td>
+              <td>No Disponible</td>
+              <td>20/02/2023</td>
+              <td>Francisco Ovares</td>
+            </tr>
+            <tr>
+              <td>Movil #2</td>
+              <td>Disponible</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Equipo de recarga Movil</td>
+              <td>No Disponible</td>
+              <td>20/02/2023</td>
+              <td>Mariana Artavia</td>
+            </tr>
+          </tbody>
         </table>
         <br></br>
-        <button>Actualizar Lista Activos</button>
+        <div
+          class="btn-group"
+          role="group"
+          aria-label="Basic mixed styles example"
+        >
+          <button class="btn btn-primary">Actualizar</button>
+          <button class="btn btn-primary">Añadir</button>
+          <button class="btn btn-primary">Modificar</button>
+          <button class="btn btn-primary">Eliminar</button>
+        </div>
       </form>
     </div>
   );
