@@ -18,6 +18,7 @@ function Login() {
             placeholder="Nombre de usuario"
           ></input>
           <input
+            
             style={{ fontSize: 25, margin: 20 }}
             placeholder="Contraseña"
             type={"password"}
@@ -27,7 +28,7 @@ function Login() {
               setGoToHomePage(true);
             }}
             style={{ fontSize: 25, margin: 20 }}
-          >
+            class="btn btn-primary">
             Iniciar Sesion
           </button>
         </div>
