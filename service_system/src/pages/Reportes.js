@@ -1,15 +1,19 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+
 export default function Reportes(){
     return (
         <body>
             <h1>Reportes</h1>
-            <form alint-items="center">
-                <table margin="0" border="1px solid black">
-                    <tr>
-                        <th >#</th>
-                        <th>Fecha</th>
-                        <th>Servicio</th>
-                        <th>Cliente</th>
-                    </tr>
+            <form>
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th >#</th>
+                            <th>Fecha</th>
+                            <th>Servicio</th>
+                            <th>Cliente</th>
+                        </tr>
+                    </thead> 
                     <tr>
                         <td>1</td>
                         <td>03/01/2023</td>
