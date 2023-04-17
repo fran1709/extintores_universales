@@ -1,6 +1,7 @@
-import Login from "./Login"
 export default function Homepage(){
     return (
-        <Login/>
+        <body>
+            <h1>Bievenido!</h1>
+        </body>
     );
 }

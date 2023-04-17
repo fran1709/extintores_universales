@@ -1,4 +1,4 @@
-import "./pageStyles.css";
+
 
 export default function Activos() {
   return (
