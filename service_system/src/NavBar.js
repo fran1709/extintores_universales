@@ -31,8 +31,8 @@ export default function NavBar() {
         </button>
         <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarNav">
           <ul className="navbar-nav">
-            <CustomLink to="Factura">Facturar</CustomLink>
-            <CustomLink to="Reportes">Bitácora</CustomLink>
+            {/*<CustomLink to="Factura">Facturar</CustomLink>
+            <CustomLink to="Reportes">Bitácora</CustomLink>*/}
             <CustomLink to="Rutas">Asignar Ruta</CustomLink>
           </ul>
         </div>
@@ -52,4 +52,3 @@ function CustomLink({ to, children, ...props }) {
     </li>
   );
 }
-

@@ -1,0 +1,40 @@
+{  
+    "San Carlos":{
+        "rutas": [
+            { "ruta": "Ciudad Quesada - Fortuna", "clientes": 10 },
+            { "ruta": "Ciudad Quesada - Aguas Zarcas", "clientes": 5 },
+            { "ruta": "Ciudad Quesada - Zarcero", "clientes": 8 }
+        ],
+        "moviles": [
+            { "numero": 1, "placa": "TFM-839"},
+            { "numero": 2, "placa": "EDR-264"},
+            { "numero": 3, "placa": "WAS-335"}
+        ],
+        "empleados":[
+            { "nombre": "Francisco Ovares", "cedula":"123", "password":"123", "type":1},
+            { "nombre": "Josué Quesada", "cedula":"204230453", "password":"123", "type":2},
+            { "nombre": "Mariana Artavia", "cedula":"205330485", "password":"123", "type":2},
+            { "nombre": "Gaudy Esquivel", "cedula": "321", "password":"123", "type":0}
+        ],
+        "rutasAsignadas":[
+
+        ]
+    },
+    "Alajuela": {    
+        "rutas": [
+            { "ruta": "Radial - Villa Bonita", "clientes": 15 },
+            { "ruta": "Radial - Centro", "clientes": 5 },
+            { "ruta": "Ciudad Quesada - Zarcero", "clientes": 8 }
+        ],
+        "moviles":[
+            { "numero": 1, "placa": "TFM-839"},
+            { "numero": 2, "placa": "EDR-264"},
+            { "numero": 3, "placa": "WAS-335"}
+        ],
+        "empleados":[
+            { "nombre": "Andrik Solano", "cedula": "103440345", "password":"123", "type":1},
+            { "nombre": "Steven Alvarado", "cedula": "304560346", "password":"123", "type":2},
+            { "nombre": "Javier Arias", "cedula": "205330967", "password":"123", "type":0}
+        ]
+    }
+}

@@ -1,18 +1,40 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
+import DataBase from "./DataBase.json"
 
 export default function Rutas() {
   const [data, setData] = useState([
-    { ruta: "Ciudad Quesada - Fortuna", clientes: 10, movil: "", colaborador: "" },
-    { ruta: "Ciudad Quesada - Aguas Zarcas", clientes: 5, movil: "", colaborador: "" },
-    { ruta: "Ciudad Quesada - Zarcero", clientes: 8, movil: "", colaborador: "" },
-    { ruta: "San José - Cartago", clientes: 15, movil: "", colaborador: "" },
-    { ruta: "Heredia - Alajuela", clientes: 12, movil: "", colaborador: "" },
+    {
+      ruta: "",
+      movil: "",
+      colaborador: "Francisco Ovares",
+    },
+    {
+      ruta: "",
+      movil: "",
+      colaborador: "Mariana Artavia",
+    },
+    {
+      ruta: "",
+      movil: "",
+      colaborador: "Josué Quesada",
+    },
+    {
+      ruta: "",
+      movil: "",
+      colaborador: "Andrik Solano",
+    },
+    {
+      ruta: "",
+      movil: "",
+      colaborador: "Javier Arias",
+    },
   ]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //Aquí iría la lógica para enviar los datos al servidor o hacer lo que necesites
+    console.log(DataBase);
+    //Aquí iría la lógica para enviar los datos al servidor o hacer lo que se necesite
     alert("Asignación de rutas exitosa");
   };
 
@@ -23,17 +45,15 @@ export default function Rutas() {
         <table className="table">
           <thead>
             <tr>
+              <th scope="col">Colaborador</th>
+              <th scope="col">Movil Asignado</th>
               <th scope="col">Ruta</th>
-              <th scope="col">Cantidad de clientes en ruta</th>
-              <th scope="col">Movil de ruta</th>
-              <th scope="col">Colaborador asignado</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item, index) => (
               <tr key={index}>
-                <td>{item.ruta}</td>
-                <td>{item.clientes}</td>
+                <td>{item.colaborador}</td>
                 <td>
                   <select
                     className="form-select"
@@ -52,16 +72,21 @@ export default function Rutas() {
                 <td>
                   <select
                     className="form-select"
-                    value={item.colaborador}
+                    value={item.ruta}
                     onChange={(event) => {
                       const newData = [...data];
-                      newData[index].colaborador = event.target.value;
+                      newData[index].ruta = event.target.value;
                       setData(newData);
                     }}
                   >
-                    <option>Francisco Ovares</option>
-                    <option>Mariana Artavia</option>
-                    <option>Josué Quesada</option>
+                    <option value="">Seleccione una ruta</option>
+                    {Object.keys(DataBase).map((ciudad, index) =>
+                      DataBase[ciudad].rutas.map((ruta, index) => (
+                        <option key={index} value={ruta.ruta}>
+                          {ciudad} - {ruta.ruta} ({ruta.clientes} clientes)
+                        </option>
+                      ))
+                    )}
                   </select>
                 </td>
               </tr>

@@ -1,56 +1,49 @@
 import {React, useState} from "react";
 import { Navigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { initializeApp } from "firebase/app";
-import { getFirestore} from "@firebase/firestore";
-import { collection, getDocs} from "@firebase/firestore";
-
-// Configurar Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyDf-dKtAh4Ir4L-e2pE3q40W1c4vFY6--E",
-  authDomain: "servicesystem-5c93d.firebaseapp.com",
-  projectId: "servicesystem-5c93d",
-  storageBucket: "servicesystem-5c93d.appspot.com",
-  messagingSenderId: "582019543314",
-  appId: "1:582019543314:web:05bf1aa60be5fb5eb503cb"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const usersCollecRef = collection(db, "users");
-export let isLoggedIn = false;
+import DataBase from "./DataBase.json";
 
 function Login() {
   const [goToHomePage, setGoToHomePage] = useState(false);
-  
+
   const handleLogin = async (event) => {
     event.preventDefault();
-    const email = event.target.email.value;
+    const cedula = event.target.cedula.value;
     const password = event.target.password.value;
-    console.log("Ingresadas->", email, password);
+    console.log("Ingresadas->", cedula, password);
+      
     try {
-      const data = await getDocs(usersCollecRef);
-      let users_db = data.docs.map((doc) => ({ ...doc.data() }));
-      console.log(users_db);
-      // Verificar si las credenciales son válidas
-      let user = users_db.find((user) => user.email === email && user.password === password);
-      if (!user) {
+      let user_Logued;
+      // Loop through each branch
+      for (const branch of Object.values(DataBase)) {
+        console.log(Object.keys(DataBase).branch);
+        // Search for an employee that matches the credentials in the current branch
+        user_Logued = branch.empleados.find((user_Logued) => user_Logued.cedula === cedula && user_Logued.password === password);
+        if (user_Logued) {
+          console.log(user_Logued);
+          //localStorage.setItem('sede', JSON.stringify(sede));
+          break; // Stop searching if a user is found
+        }
+      }
+      if (!user_Logued) {
         throw new Error("Credenciales incorrectas");
       } else {  
-        isLoggedIn = true; // Establecer isLoggedIn a true
         setGoToHomePage(true);
-        alert("Bienvenido! " + user.name);
+        // Escribir los datos del usuario en el archivo JSON
+
+        localStorage.setItem('user_Logued', JSON.stringify(user_Logued));
+        //alert("Bienvenido! " + user_Logued.nombre);
       }
-      
     } catch (error) {
       console.error(error);
       alert("Error al iniciar sesión. Verifica tus credenciales e intenta nuevamente.");
     }
   };
 
+  
   if (goToHomePage) {
-    return <Navigate to="/Homepage" />;
-  }
+    return <Navigate to="/Homepage"/>;
+  }  
 
   return (
     <Container fluid className="h-100">
@@ -61,9 +54,9 @@ function Login() {
           </div>
           <h1 className="text-center mb-4">Inicio de Sesión</h1>
           <Form onSubmit={handleLogin}>
-            <Form.Group controlId="email">
-              <Form.Label>Correo electrónico</Form.Label>
-              <Form.Control type="email" placeholder="Ingresa tu correo electrónico" required />
+            <Form.Group controlId="cedula">
+              <Form.Label>Cédula</Form.Label>
+              <Form.Control placeholder="Ingresa tu cedula" required />
             </Form.Group>
   
             <Form.Group controlId="password">
