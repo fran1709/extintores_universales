@@ -1,20 +1,29 @@
 import React, { useState } from 'react';
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { Link, useMatch, useResolvedPath, useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
-//import $ from 'jquery';
-//import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const userData = JSON.parse(localStorage.getItem("user_Logued"));
+  let empleadoTipo = userData ? userData.type : null;
+  const navigate = useNavigate();
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
-  }
+  };
+
+  const handleLogout = () => {
+    // Limpiar localStorage al cerrar sesión
+    localStorage.clear();
+
+    // Redirigir a la página de inicio de sesión
+    navigate("/Login");
+  };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: '#2096F3 '}}>
+    <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: '#2096F3 ' }}>
       <div className="container-fluid">
-        <Link style={{color: 'white'}} to="/" className="navbar-brand" >
+        <Link style={{ color: 'white' }} to="/" className="navbar-brand">
           Extintores Universales
         </Link>
         <button
@@ -31,9 +40,25 @@ export default function NavBar() {
         </button>
         <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarNav">
           <ul className="navbar-nav">
-            {/*<CustomLink to="Factura">Facturar</CustomLink>
-            <CustomLink to="Reportes">Bitácora</CustomLink>*/}
-            <CustomLink to="Rutas">Asignar Ruta</CustomLink>
+            {empleadoTipo === 0 && (
+              <>
+                <CustomLink to="Factura">Facturar</CustomLink>
+                <CustomLink to="Reportes">Bitácora</CustomLink>
+              </>
+            )}
+            {empleadoTipo === 1 && (
+              <CustomLink to="Rutas">Asignar Ruta</CustomLink>
+            )}
+            {empleadoTipo === 2 && (
+              <CustomLink to="Factura">Facturar</CustomLink>
+            )}
+            {userData && (
+              <li className="nav-item">
+                <button className="nav-link" style={{ color: 'white', background: 'none', border: 'none', cursor: 'pointer' }} onClick={handleLogout}>
+                  Cerrar sesión
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -46,7 +71,7 @@ function CustomLink({ to, children, ...props }) {
   const isActive = useMatch({ path: resolvedPath.pathname, end: true });
   return (
     <li className="nav-item">
-      <Link to={to} className={`nav-link ${isActive ? "active" : ""}`} style={{color: 'white'}} {...props}>
+      <Link to={to} className={`nav-link ${isActive ? 'active' : ''}`} style={{ color: 'white' }} {...props}>
         {children}
       </Link>
     </li>
