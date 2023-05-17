@@ -47,10 +47,17 @@ export default function NavBar() {
               </>
             )}
             {empleadoTipo === 1 && (
-              <CustomLink to="Rutas">Asignar Ruta</CustomLink>
+              <>
+                <CustomLink to="Factura">Facturar</CustomLink>
+                <CustomLink to="Reportes">Generar Bitácora</CustomLink>
+                <CustomLink to="Rutas">Asignar Ruta</CustomLink>
+              </>
             )}
             {empleadoTipo === 2 && (
-              <CustomLink to="Factura">Facturar</CustomLink>
+              <>
+                <CustomLink to="Factura">Facturar</CustomLink>
+                <CustomLink to="Reportes">Generar Bitácora</CustomLink>
+              </>
             )}
             {userData && (
               <li className="nav-item">
