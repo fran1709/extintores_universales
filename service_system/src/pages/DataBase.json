@@ -1,14 +1,15 @@
 {  
     "San Carlos":{
         "rutas": [
-            { "ruta": "Ciudad Quesada - Fortuna", "clientes": 10 },
-            { "ruta": "Ciudad Quesada - Aguas Zarcas", "clientes": 5 },
-            { "ruta": "Ciudad Quesada - Zarcero", "clientes": 8 }
+            { "id":0, "ruta": "Ciudad Quesada - Fortuna", "clientes": 10 },
+            { "id":1, "ruta": "Ciudad Quesada - Aguas Zarcas", "clientes": 5 },
+            { "id":2, "ruta": "Ciudad Quesada - Zarcero", "clientes": 8 }
         ],
         "moviles": [
             { "numero": 1, "placa": "TFM-839"},
             { "numero": 2, "placa": "EDR-264"},
-            { "numero": 3, "placa": "WAS-335"}
+            { "numero": 3, "placa": "WAS-335"},
+            {"numero":4,"placa":"FGR-245"}
         ],
         "empleados":[
             { "nombre": "Francisco Ovares", "cedula":"123", "password":"123", "type":1},
@@ -17,7 +18,7 @@
             { "nombre": "Gaudy Esquivel", "cedula": "321", "password":"123", "type":0}
         ],
         "rutasAsignadas":[
-
+            {"cedula":"123", "rutaId":1, "movildId":3}
         ]
     },
     "Alajuela": {    
