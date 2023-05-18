@@ -1,5 +1,4 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
 import DataBase from "./DataBase.json"
 import React from "react";
 
@@ -9,15 +8,15 @@ export default function Rutas() {
 
   const empleadoCedula = userData.cedula; // Cédula del empleado que deseas buscar
 
-// Buscar la sede basándose en la cédula del empleado
-let sedeEncontrada = null;
-Object.keys(DataBase).forEach((sede) => {
-  const empleados = DataBase[sede].empleados;
-  const empleadoEncontrado = empleados.find((empleado) => empleado.cedula === empleadoCedula);
-  if (empleadoEncontrado) {
-    sedeEncontrada = sede;
-  }
-});
+  // Buscar la sede basándose en la cédula del empleado
+  let sedeEncontrada = null;
+  Object.keys(DataBase).forEach((sede) => {
+    const empleados = DataBase[sede].empleados;
+    const empleadoEncontrado = empleados.find((empleado) => empleado.cedula === empleadoCedula);
+    if (empleadoEncontrado) {
+      sedeEncontrada = sede;
+    }
+  });
 
 // Imprimir el resultado
 if (sedeEncontrada) {
@@ -35,7 +34,7 @@ if (sedeEncontrada) {
   };
 
   return (
-    <div className="container">
+    <div className="card shadow">
       <h1 className="my-5">Planificación de Rutas</h1>
       <form onSubmit={handleSubmit}>
         <table className="table">
@@ -77,10 +76,12 @@ if (sedeEncontrada) {
             
           </tbody>
         </table>
-        <br />
-        <button type="submit" className="btn btn-primary">
-          Completar Asignación
-        </button>
+        <div className="text-center">
+          <button type="submit" className="btn btn-primary">
+            Completar Asignación
+          </button>
+        </div>
+        <br/>
       </form>
     </div>
   );

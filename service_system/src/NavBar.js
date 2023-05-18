@@ -7,6 +7,7 @@ export default function NavBar() {
   const userData = JSON.parse(localStorage.getItem("user_Logued"));
   let empleadoTipo = userData ? userData.type : null;
   const navigate = useNavigate();
+  const TiposUsuario = new TipoUsuario();
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
@@ -23,9 +24,16 @@ export default function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: '#2096F3 ' }}>
       <div className="container-fluid">
-        <Link style={{ color: 'white' }} to="/" className="navbar-brand">
+        {userData &&(
+          <Link style={{ color: 'white' }} to="/HomePage" className="navbar-brand">
           Extintores Universales
-        </Link>
+          </Link>
+        )}
+        {!userData &&(
+          <Link style={{ color: 'white' }} to="/" className="navbar-brand">
+          Extintores Universales
+          </Link>
+        )}
         <button
           className="navbar-toggler"
           type="button"
@@ -40,20 +48,19 @@ export default function NavBar() {
         </button>
         <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarNav">
           <ul className="navbar-nav">
-            {empleadoTipo === 0 && (
+            {empleadoTipo === TiposUsuario.Administrador && (
               <>
-                <CustomLink to="Factura">Facturar</CustomLink>
                 <CustomLink to="Reportes">Bitácora</CustomLink>
               </>
             )}
-            {empleadoTipo === 1 && (
+            {empleadoTipo === TiposUsuario.AsignadorRuta && (
               <>
                 <CustomLink to="Factura">Facturar</CustomLink>
                 <CustomLink to="Reportes">Generar Bitácora</CustomLink>
                 <CustomLink to="Rutas">Asignar Ruta</CustomLink>
               </>
             )}
-            {empleadoTipo === 2 && (
+            {empleadoTipo === TiposUsuario.Colaborador && (
               <>
                 <CustomLink to="Factura">Facturar</CustomLink>
                 <CustomLink to="Reportes">Generar Bitácora</CustomLink>
@@ -83,4 +90,15 @@ function CustomLink({ to, children, ...props }) {
       </Link>
     </li>
   );
+}
+
+class TipoUsuario{
+  Colaborador = 2;
+  Administrador = 0;
+  AsignadorRuta = 1;
+  TipoUsuario(){
+    this.Administrador = 0;
+    this.AsignadorRuta = 1;
+    this.Colaborador = 2;
+  }
 }

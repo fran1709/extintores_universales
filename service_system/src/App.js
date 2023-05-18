@@ -7,6 +7,8 @@ import Factura from "./pages/Factura";
 //import Reportes from "./pages/Reportes";
 import Rutas from "./pages/Rutas";
 import Login from "./pages/Login";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const navigate = useNavigate();

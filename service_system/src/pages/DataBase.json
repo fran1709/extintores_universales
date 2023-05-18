@@ -9,7 +9,7 @@
             { "numero": 1, "placa": "TFM-839"},
             { "numero": 2, "placa": "EDR-264"},
             { "numero": 3, "placa": "WAS-335"},
-            {"numero":4,"placa":"FGR-245"}
+            { "numero": 4,  "placa":"FGR-245"}
         ],
         "empleados":[
             { "nombre": "Francisco Ovares", "cedula":"123", "password":"123", "type":1},
@@ -18,14 +18,15 @@
             { "nombre": "Gaudy Esquivel", "cedula": "321", "password":"123", "type":0}
         ],
         "rutasAsignadas":[
-            {"cedula":"123", "rutaId":1, "movildId":3}
+            {"cedula":"123","ruta":"Ciudad Quesada - Aguas Zarcas", "movil":1},
+            {"cedula":"204230453", "ruta":"Ciudad Quesada - Fortuna","movil":2}
         ]
     },
     "Alajuela": {    
         "rutas": [
             { "ruta": "Radial - Villa Bonita", "clientes": 15 },
             { "ruta": "Radial - Centro", "clientes": 5 },
-            { "ruta": "Ciudad Quesada - Zarcero", "clientes": 8 }
+            { "ruta": "Areopuerto  - Heredia", "clientes": 8 }
         ],
         "moviles":[
             { "numero": 1, "placa": "TFM-839"},
@@ -36,6 +37,10 @@
             { "nombre": "Andrik Solano", "cedula": "103440345", "password":"123", "type":1},
             { "nombre": "Steven Alvarado", "cedula": "304560346", "password":"123", "type":2},
             { "nombre": "Javier Arias", "cedula": "205330967", "password":"123", "type":0}
+        ],
+        "rutasAsignadas":[
+            {"cedula":"103440345","ruta":"Radial - Centro","movil":1},
+            {"cedula":"304560346", "ruta":"Radial - Villa Bonita","movil":3}
         ]
     }
 }
