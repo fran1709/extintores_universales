@@ -1,6 +1,32 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { NumericFormat } from "react-number-format";
+import React, { useRef } from "react";
 
 export default function Factura() {
+  const CustomInput = React.forwardRef((props, ref) => (
+    <input
+      {...props}
+      ref={ref}
+      className="form-control"
+      placeholder="Monto cobrado"
+      style={{ width: "25%" }}
+    />
+  ));
+
+  const textareaRef = useRef(null);
+  const textareaRef2 = useRef(null);
+
+  const handleTextareaChange = () => {
+    const textarea = textareaRef.current;
+    textarea.style.height = "auto"; // Restaurar la altura a "auto" para calcular correctamente la altura del contenido
+    textarea.style.height = `${textarea.scrollHeight}px`; // Establecer la altura del textarea según el contenido
+  };
+  const handleTextareaChange2 = () => {
+    const textarea = textareaRef2.current;
+    textarea.style.height = "auto"; // Restaurar la altura a "auto" para calcular correctamente la altura del contenido
+    textarea.style.height = `${textarea.scrollHeight}px`; // Establecer la altura del textarea según el contenido
+  };
+
   return (
     <div style={{ width: "80%", margin: "0 auto"}}>
       <div className="card shadow" style={{}}>
@@ -82,12 +108,14 @@ export default function Factura() {
   
           <div className="mb-3">
             <label className="form-label">
-              <h5>Nota de Servicio</h5>
+              <h5>Nota del Servicio</h5>
             </label>
             <textarea
+              ref={textareaRef2}
               className="form-control"
-              placeholder="Ingrese anotaciones a tener en cuenta"
-              style={{ width: "77%", margin: "0 auto" }}
+              placeholder="Ingrese anotaciones a tener en cuenta (tipo y cantidad de extintores, ...)"
+              style={{ height: "auto", width: "77%", margin: "0 auto" }}
+              onChange={handleTextareaChange2}
             ></textarea>
           </div>
   
@@ -107,14 +135,30 @@ export default function Factura() {
               Factura Electrónica
             </label>
           </div>
+
+          <div className="mb-3">
+            <label className="form-label">
+              <h5>Monto</h5>
+            </label>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <NumericFormat
+                thousandSeparator={true}
+                prefix="₡"
+                customInput={CustomInput}
+              />
+            </div>
+          </div>
+
           <div className="mb-3 form-group">
             <label className="form-label">
               <h3>Nota</h3>
             </label>
             <textarea
+              ref={textareaRef}
               className="form-control"
-              placeholder="Ingrese anotaciones a tener en cuenta"
-              style={{ width: "77%", margin: "0 auto" }}
+              placeholder="Ingrese anotaciones extra a tener en cuenta (peticiones, sugerencias, sucesos, ...)"
+              style={{ height: "auto", width: "77%", margin: "0 auto" }}
+              onChange={handleTextareaChange}
             ></textarea>
             <button className="btn btn-primary mt-3">Generar Factura</button>
           </div>

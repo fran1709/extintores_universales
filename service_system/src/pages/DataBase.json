@@ -20,6 +20,9 @@
         "rutasAsignadas":[
             {"cedula":"123","ruta":"Ciudad Quesada - Aguas Zarcas", "movil":1},
             {"cedula":"204230453", "ruta":"Ciudad Quesada - Fortuna","movil":2}
+        ],
+        "facturas":[
+            {}
         ]
     },
     "Alajuela": {    
@@ -41,6 +44,9 @@
         "rutasAsignadas":[
             {"cedula":"103440345","ruta":"Radial - Centro","movil":1},
             {"cedula":"304560346", "ruta":"Radial - Villa Bonita","movil":3}
+        ],
+        "facturas":[
+            {}
         ]
     }
 }

@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 import NavBar from "./NavBar";
 import Homepage from "./pages/Homepage";
 import Factura from "./pages/Factura";
-//import Reportes from "./pages/Reportes";
+import Reportes from "./pages/Reportes";
 import Rutas from "./pages/Rutas";
 import Login from "./pages/Login";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,12 +28,13 @@ function App() {
         <Routes>
           <Route path="/Homepage" element={<Homepage />} />
           {/*
-          <Route path="/Reportes" element={<Reportes />} />
+           />
           <Route path="/Finanzas" element={<Finanzas />} />
           <Route path="/Activos" element={<Activos />} />
           <Route path="/Empleados" element={<Empleados />} />*/}
           <Route path="/Factura" element={<Factura />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/Reportes" element={<Reportes />}/>
           <Route path="/Rutas" element={<Rutas />} />
           <Route path="/" element={<Login />} />
         </Routes>
