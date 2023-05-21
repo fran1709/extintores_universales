@@ -72,6 +72,10 @@ export default function Finanzas() {
     const totalFacturas = facturas.reduce((total, factura) => total + parseInt(factura.monto), 0);
     return totalFacturas;
   };
+  
+  const recargarPagina = () => {
+    window.location.reload();
+  };
 
   return (
     <div className="container">
@@ -106,6 +110,7 @@ export default function Finanzas() {
           </table>
         </>
       )}
+      <button className="btn btn-primary mt-3" onClick={recargarPagina}>Actualizar</button>
     </div>
   );
 }
