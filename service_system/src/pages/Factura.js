@@ -1,8 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NumericFormat } from "react-number-format";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { Modal, Button } from "react-bootstrap";
 
 export default function Factura() {
+  const [showModal, setShowModal] = useState(false);
   const CustomInput = React.forwardRef((props, ref) => (
     <input
       {...props}
@@ -26,12 +28,29 @@ export default function Factura() {
     textarea.style.height = "auto"; // Restaurar la altura a "auto" para calcular correctamente la altura del contenido
     textarea.style.height = `${textarea.scrollHeight}px`; // Establecer la altura del textarea según el contenido
   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setShowModal(true);
+  };
 
   return (
     <div style={{ width: "80%", margin: "0 auto"}}>
       <div className="card shadow" style={{}}>
         <h1 className="text-center my-4">Facturando Servicio</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
+          <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Factura exitosa</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              ¡La facturación se realizó correctamente!
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={() => setShowModal(false)}>
+                Cerrar
+              </Button>
+            </Modal.Footer>
+          </Modal>
           <div className="mb-3">
             <label className="form-label">
               <h3>Fecha de Factura</h3>

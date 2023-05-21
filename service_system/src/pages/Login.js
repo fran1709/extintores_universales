@@ -1,11 +1,12 @@
 import {React, useState} from "react";
 import { Navigate } from "react-router-dom";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Modal } from "react-bootstrap";
 import DataBase from "./DataBase.json";
+
 
 function Login() {
   const [goToHomePage, setGoToHomePage] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);
   const handleLogin = async (event) => {
     event.preventDefault();
     const cedula = event.target.cedula.value;
@@ -21,6 +22,7 @@ function Login() {
         user_Logued = branch.empleados.find((user_Logued) => user_Logued.cedula === cedula && user_Logued.password === password);
         if (user_Logued) {
           console.log(user_Logued);
+          setShowModal(true);
           //localStorage.setItem('sede', JSON.stringify(sede));
           break; // Stop searching if a user is found
         }
@@ -28,7 +30,9 @@ function Login() {
       if (!user_Logued) {
         throw new Error("Credenciales incorrectas");
       } else {  
-        setGoToHomePage(true);
+        setTimeout(() => {
+          setGoToHomePage(true);
+        }, 1750);
         // Escribir los datos del usuario en el archivo JSON
 
         localStorage.setItem('user_Logued', JSON.stringify(user_Logued));
@@ -37,7 +41,7 @@ function Login() {
     } catch (error) {
       console.error(error);
       alert("Error al iniciar sesión. Verifica tus credenciales e intenta nuevamente.");
-    }
+    } 
   };
 
   
@@ -58,6 +62,19 @@ function Login() {
           </div>
           <h1 className="text-center mb-4">Inicio de Sesión</h1>
           <Form onSubmit={handleLogin}>
+            <Modal show={showModal} onHide={() => setShowModal(false)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Login exitoso</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                ¡El inicion de sesión se realizó correctamente!
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="primary" onClick={() => setShowModal(false)}>
+                  Cerrar
+                </Button>
+              </Modal.Footer>
+            </Modal>
             <Form.Group controlId="cedula">
               <Form.Label>Cédula</Form.Label>
               <Form.Control placeholder="Ingresa tu cedula" required />

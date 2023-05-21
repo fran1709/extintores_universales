@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import data from './DataBase.json';
+import { Modal, Button } from "react-bootstrap";
 
 const Bitacora = () => {
   const [bitacora, setBitacora] = useState([]);
   const userData = JSON.parse(localStorage.getItem("user_Logued"));
   const cedula = userData.cedula;
   let total = 0;
+  const [showModal, setShowModal] = useState(false);
 
   const buscarBitacora = useCallback(() => {
     for (const ciudad in data) {
@@ -27,10 +29,28 @@ const Bitacora = () => {
     buscarBitacora();
   }, [buscarBitacora]);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setShowModal(true);
+  };
+
   return (
     <div className="container">
       <h1>Bitácora Diaria</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Bitácora exitosa</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            ¡El reporte diario de bitácora se realizó correctamente!
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={() => setShowModal(false)}>
+              Cerrar
+            </Button>
+          </Modal.Footer>
+        </Modal>
         <table className="table table-bordered" style={{width:"50%", margin:"auto", marginBottom:"50px", marginTop:"50px"}}>
           <thead className="table-light">
             <tr>

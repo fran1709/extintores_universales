@@ -1,11 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import DataBase from "./DataBase.json";
 import React, { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
 
 export default function Rutas() {
   const userData = JSON.parse(localStorage.getItem("user_Logued"));
   console.log(userData);
-
+  const [showModal, setShowModal] = useState(false);
   const empleadoCedula = userData.cedula; // Cédula del empleado que deseas buscar
 
   // Buscar la sede basándose en la cédula del empleado
@@ -54,14 +55,26 @@ export default function Rutas() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(DataBase);
-    //Aquí iría la lógica para enviar los datos al servidor o hacer lo que se necesite
-    alert("Asignación de rutas exitosa");
+    setShowModal(true);
   };
 
   return (
     <div className="card shadow">
       <h1 className="my-5">Planificación de Rutas</h1>
       <form onSubmit={handleSubmit}>
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Asignación de rutas exitosa</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            ¡La asignación de rutas se realizó correctamente!
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={() => setShowModal(false)}>
+              Cerrar
+            </Button>
+          </Modal.Footer>
+        </Modal>
         <table className="table">
           <thead>
             <tr>
