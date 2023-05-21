@@ -18,8 +18,9 @@
             { "nombre": "Gaudy Esquivel", "cedula": "4", "password":"123", "type":0}
         ],
         "rutasAsignadas":[
-            {"cedula":"123","ruta":"Ciudad Quesada - Aguas Zarcas", "movil":1},
-            {"cedula":"204230453", "ruta":"Ciudad Quesada - Fortuna","movil":2}
+            {"cedula":"1","ruta":"Ciudad Quesada - Aguas Zarcas", "movil":1},
+            {"cedula":"2", "ruta":"Ciudad Quesada - Fortuna","movil":2},
+            {"cedula":"3","ruta":"Ciudad Quesada - Zarcero","movil":3}
         ],
         "bitacora":[
             {"servicio":"Mantenimiento","monto":"10000","cedula":"1"},
@@ -43,8 +44,8 @@
             { "nombre": "Javier Arias", "cedula": "7", "password":"123", "type":0}
         ],
         "rutasAsignadas":[
-            {"cedula":"103440345","ruta":"Radial - Centro","movil":1},
-            {"cedula":"304560346", "ruta":"Radial - Villa Bonita","movil":3}
+            {"cedula":"5","ruta":"Radial - Centro","movil":1},
+            {"cedula":"6", "ruta":"Radial - Villa Bonita","movil":3}
         ],
         "bitacora":[
             {"servicio":"Reparación","monto":"5000","cedula":"5"},

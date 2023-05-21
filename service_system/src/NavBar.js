@@ -63,7 +63,7 @@ export default function NavBar() {
             {empleadoTipo === TiposUsuario.Colaborador && (
               <>
                 <CustomLink to="Factura">Facturar</CustomLink>
-                <CustomLink to="Reportes">Generar Bitácora</CustomLink>
+                <CustomLink to="BitacoraDiaria">Generar Bitácora</CustomLink>
               </>
             )}
             {userData && (

@@ -1,155 +1,111 @@
-import "./pageStyles.css";
+import React, { useEffect, useState } from "react";
+import data from "./DataBase.json";
 
 export default function Finanzas() {
+  const userData = JSON.parse(localStorage.getItem("user_Logued"));
+  const empleadoCedula = userData.cedula;
+
+  const [empleados, setEmpleados] = useState([]);
+  const [sedeEncontrada, setSedeEncontrada] = useState("");
+
+  useEffect(() => {
+    // Buscar la sede basándose en la cédula del empleado
+    let sedeEncontrada = null;
+    Object.keys(data).forEach((sede) => {
+      const empleados = data[sede].empleados;
+      const empleadoEncontrado = empleados.find((empleado) => empleado.cedula === empleadoCedula);
+      if (empleadoEncontrado) {
+        sedeEncontrada = sede;
+      }
+    });
+
+    setSedeEncontrada(sedeEncontrada);
+
+    // Filtrar empleados de la misma sede, excluyendo al empleado actual
+    if (sedeEncontrada) {
+      const empleadosSede = data[sedeEncontrada].empleados.filter(
+        (empleado) => empleado.cedula !== empleadoCedula
+      );
+      setEmpleados(empleadosSede);
+    }
+  }, [empleadoCedula]);
+
+  const obtenerRutaAsignada = (empleado) => {
+    const rutasAsignadas = data[sedeEncontrada].rutasAsignadas || [];
+    const rutaAsignada = rutasAsignadas.find((ruta) => ruta.cedula === empleado.cedula);
+    return rutaAsignada ? rutaAsignada.ruta : "-";
+  };
+
+  const obtenerMovilAsignado = (empleado) => {
+    const rutasAsignadas = data[sedeEncontrada].rutasAsignadas || [];
+    const rutaAsignada = rutasAsignadas.find((ruta) => ruta.cedula === empleado.cedula);
+    if (rutaAsignada) {
+      const moviles = data[sedeEncontrada].moviles || [];
+      const movilAsignado = moviles.find((movil) => movil.numero === rutaAsignada.movil.toString());
+      return movilAsignado ? (
+        <div>
+          Número: {movilAsignado.numero}
+          <br />
+          Placa: {movilAsignado.placa}
+        </div>
+      ) : (
+        "Sin móvil asignado"
+      );
+    }
+    return "-";
+  };
+
+  const obtenerCantidadClientes = (empleado) => {
+    const rutas = data[sedeEncontrada].rutas || [];
+    const rutasAsignadas = data[sedeEncontrada].rutasAsignadas || [];
+    const rutaAsignada = rutasAsignadas.find((ruta) => ruta.cedula === empleado.cedula);
+    if (rutaAsignada) {
+      const ruta = rutas.find((ruta) => ruta.ruta === rutaAsignada.ruta);
+      return ruta ? ruta.clientes : "-";
+    }
+    return "-";
+  };
+
+  const obtenerTotalFacturas = (empleado) => {
+    const bitacora = data[sedeEncontrada].bitacora || [];
+    const facturas = bitacora.filter((factura) => factura.cedula === empleado.cedula);
+    const totalFacturas = facturas.reduce((total, factura) => total + parseInt(factura.monto), 0);
+    return totalFacturas;
+  };
+
   return (
-    <div>
-      <h1>Finanzas Generales E.U.</h1>
-      <form>
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>Sede</th>
-              <th>Cantidad Empleados</th>
-              <th>Rutas a Cargo</th>
-              <th>Ingresos del Mes</th>
-              <th>Gastos del Mes</th>
-              <th>Ingresos Netos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>San Carlos</td>
-              <td>15</td>
-              <td>7</td>
-              <td>1500000</td>
-              <td>250000</td>
-              <td>1250000</td>
-            </tr>
-            <tr>
-              <td>San José</td>
-              <td>25</td>
-              <td>10</td>
-              <td>3400000</td>
-              <td>700000</td>
-              <td>2700000</td>
-            </tr>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>Heredia</td>
-              <td>12</td>
-              <td>5</td>
-              <td>1200000</td>
-              <td>50000</td>
-              <td>1150000</td>
-            </tr>
-          </tbody>
-        </table>
-        <br></br>
-
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>Sede</th>
-              <th>Cantidad Empleados</th>
-              <th>Rutas a Cargo</th>
-              <th>Ingresos de la Quincena</th>
-              <th>Gastos de la Quincena</th>
-              <th>Ingresos Netos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>San Carlos</td>
-              <td>15</td>
-              <td>7</td>
-              <td>750000</td>
-              <td>125000</td>
-              <td>525000</td>
-            </tr>
-            <tr>
-              <td>San José</td>
-              <td>25</td>
-              <td>10</td>
-              <td>1700000</td>
-              <td>350000</td>
-              <td>1350000</td>
-            </tr>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>Heredia</td>
-              <td>12</td>
-              <td>5</td>
-              <td>600000</td>
-              <td>25000</td>
-              <td>575000</td>
-            </tr>
-          </tbody>
-        </table>
-        <br></br>
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>Sede</th>
-              <th>Cantidad Empleados</th>
-              <th>Rutas a Cargo</th>
-              <th>Ingresos de la Semana</th>
-              <th>Gastos de la Semana</th>
-              <th>Ingresos Netos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>San Carlos</td>
-              <td>15</td>
-              <td>7</td>
-              <td>375000</td>
-              <td>62500</td>
-              <td>312500</td>
-            </tr>
-            <tr>
-              <td>San José</td>
-              <td>25</td>
-              <td>10</td>
-              <td>850000</td>
-              <td>175000</td>
-              <td>675000</td>
-            </tr>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>Heredia</td>
-              <td>12</td>
-              <td>5</td>
-              <td>300000</td>
-              <td>12500</td>
-              <td>287500</td>
-            </tr>
-          </tbody>
-        </table>
-        <br></br>
-
-        <button class="btn btn-primary">Actualizar Finanzas</button>
-      </form>
+    <div className="container">
+      <h1 className="mt-4 mb-3">Bitácoras Diarias Generadas</h1>
+      {sedeEncontrada && (
+        <>
+          <h2>Sede: {sedeEncontrada}</h2>
+          <table className="table table-bordered">
+            <thead className="table-primary">
+              <tr>
+                <th scope="col">Colaborador</th>
+                <th scope="col">Monto Generado</th>
+                <th scope="col">Cantidad de Clientes</th>
+                <th scope="col">Movil Asignado</th>
+                <th scope="col">Ruta Asignada</th>
+              </tr>
+            </thead>
+            <tbody>
+              {empleados.map((empleado) => {
+                const montoGenerado = obtenerTotalFacturas(empleado);
+                return (
+                  <tr key={empleado.cedula}>
+                    <td>{empleado.nombre}</td>
+                    <td>{montoGenerado}</td>
+                    <td>{obtenerCantidadClientes(empleado)}</td>
+                    <td>{obtenerMovilAsignado(empleado)}</td>
+                    <td>{obtenerRutaAsignada(empleado)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </>
+      )}
     </div>
   );
 }
