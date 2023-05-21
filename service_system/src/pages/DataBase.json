@@ -9,20 +9,21 @@
             { "numero": "1", "placa": "TFM-839"},
             { "numero": "2", "placa": "EDR-264"},
             { "numero": "3", "placa": "WAS-335"},
-            { "numero": "4",  "placa":"FGR-245"}
+            { "numero": "4", "placa": "FGR-245"}
         ],
         "empleados":[
-            { "nombre": "Francisco Ovares", "cedula":"123", "password":"123", "type":1},
-            { "nombre": "Josué Quesada", "cedula":"204230453", "password":"123", "type":2},
-            { "nombre": "Mariana Artavia", "cedula":"205330485", "password":"123", "type":2},
-            { "nombre": "Gaudy Esquivel", "cedula": "321", "password":"123", "type":0}
+            { "nombre": "Francisco Ovares", "cedula":"1", "password":"123", "type":1},
+            { "nombre": "Josué Quesada", "cedula":"2", "password":"123", "type":2},
+            { "nombre": "Mariana Artavia", "cedula":"3", "password":"123", "type":2},
+            { "nombre": "Gaudy Esquivel", "cedula": "4", "password":"123", "type":0}
         ],
         "rutasAsignadas":[
             {"cedula":"123","ruta":"Ciudad Quesada - Aguas Zarcas", "movil":1},
             {"cedula":"204230453", "ruta":"Ciudad Quesada - Fortuna","movil":2}
         ],
-        "facturas":[
-            {}
+        "bitacora":[
+            {"servicio":"Mantenimiento","monto":"10000","cedula":"1"},
+            {"servicio":"Venta", "monto":"25000","cedula":"1"}
         ]
     },
     "Alajuela": {    
@@ -37,16 +38,17 @@
             { "numero": "3", "placa": "WAS-335"}
         ],
         "empleados":[
-            { "nombre": "Andrik Solano", "cedula": "103440345", "password":"123", "type":1},
-            { "nombre": "Steven Alvarado", "cedula": "304560346", "password":"123", "type":2},
-            { "nombre": "Javier Arias", "cedula": "205330967", "password":"123", "type":0}
+            { "nombre": "Andrik Solano", "cedula": "5", "password":"123", "type":1},
+            { "nombre": "Steven Alvarado", "cedula": "6", "password":"123", "type":2},
+            { "nombre": "Javier Arias", "cedula": "7", "password":"123", "type":0}
         ],
         "rutasAsignadas":[
             {"cedula":"103440345","ruta":"Radial - Centro","movil":1},
             {"cedula":"304560346", "ruta":"Radial - Villa Bonita","movil":3}
         ],
-        "facturas":[
-            {}
+        "bitacora":[
+            {"servicio":"Reparación","monto":"5000","cedula":"5"},
+            {"servicio":"Venta", "monto":"10000","cedula":"6"}
         ]
     }
 }

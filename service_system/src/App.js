@@ -4,9 +4,10 @@ import { Container } from "react-bootstrap";
 import NavBar from "./NavBar";
 import Homepage from "./pages/Homepage";
 import Factura from "./pages/Factura";
-import Reportes from "./pages/Reportes";
+import Bitacora from "./pages/BitacoraDiaria";
 import Rutas from "./pages/Rutas";
 import Login from "./pages/Login";
+import Finanzas from "./pages/Finanzas";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -29,12 +30,12 @@ function App() {
           <Route path="/Homepage" element={<Homepage />} />
           {/*
            />
-          <Route path="/Finanzas" element={<Finanzas />} />
           <Route path="/Activos" element={<Activos />} />
           <Route path="/Empleados" element={<Empleados />} />*/}
+          <Route path="/BitacorasGenerales" element={<Finanzas />} />
           <Route path="/Factura" element={<Factura />} />
           <Route path="/Login" element={<Login />} />
-          <Route path="/Reportes" element={<Reportes />}/>
+          <Route path="/BitacoraDiaria" element={<Bitacora />}/>
           <Route path="/Rutas" element={<Rutas />} />
           <Route path="/" element={<Login />} />
         </Routes>

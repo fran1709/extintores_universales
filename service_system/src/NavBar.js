@@ -50,13 +50,13 @@ export default function NavBar() {
           <ul className="navbar-nav">
             {empleadoTipo === TiposUsuario.Administrador && (
               <>
-                <CustomLink to="Reportes">Bitácora</CustomLink>
+                <CustomLink to="BitacorasGenerales">Bitácoras de Colaboradores</CustomLink>
               </>
             )}
             {empleadoTipo === TiposUsuario.AsignadorRuta && (
               <>
                 <CustomLink to="Factura">Facturar</CustomLink>
-                <CustomLink to="Reportes">Generar Bitácora</CustomLink>
+                <CustomLink to="BitacoraDiaria">Generar Bitácora</CustomLink>
                 <CustomLink to="Rutas">Asignar Ruta</CustomLink>
               </>
             )}

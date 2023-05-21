@@ -29,11 +29,14 @@ const Homepage = () => {
     const rutasAsignadas = Database[sede]?.rutasAsignadas || [];
     const asignacion = rutasAsignadas.find((asignacion) => asignacion.cedula === cedula);
     if (asignacion) {
-      const movilAsignado = Database[sede]?.moviles.find((movil) => movil.numero === asignacion.movil);
+      const movilAsignado = Database[sede]?.moviles.find((movil) => movil.numero === String(asignacion.movil));
       return movilAsignado ? `Número: ${movilAsignado.numero}, Placa: ${movilAsignado.placa}` : "Sin móvil asignado";
     }
     return "Sin móvil asignado";
-  };
+  };  
+
+  const empleadoActual = Database[sedeEncontrada]?.empleados.find(empleado => empleado.cedula === empleadoCedula);
+  const movilAsignado = empleadoActual ? getMovilAsignado(empleadoActual.cedula, sedeEncontrada) : "Sin móvil asignado";
 
   return (
     <div className="card shadow">
@@ -65,11 +68,7 @@ const Homepage = () => {
         {sedeEncontrada ? (
           <div key={sedeEncontrada}>
             <h5 className="card-title">{sedeEncontrada}</h5>
-            {Database[sedeEncontrada].empleados.map((empleado) => (
-              empleado.cedula === userData.cedula ? (
-                <h6 className="card-text" key={empleado.cedula}>{getMovilAsignado(empleado.cedula, sedeEncontrada)}</h6>
-              ) : null
-            ))}
+            <h6 className="card-text">{movilAsignado}</h6>
           </div>
         ) : (
           <p>Sin sede asignada</p>
@@ -77,8 +76,6 @@ const Homepage = () => {
       </div>
     </div>
   );
-  
 }
 
 export default Homepage;
-
