@@ -67,7 +67,7 @@ function Login() {
                 <Modal.Title>Login exitoso</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                ¡El inicion de sesión se realizó correctamente!
+                ¡El inicio de sesión se realizó correctamente!
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="primary" onClick={() => setShowModal(false)}>

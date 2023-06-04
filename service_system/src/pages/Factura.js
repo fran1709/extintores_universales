@@ -64,7 +64,7 @@ export default function Factura() {
                 <h4>Teléfono</h4>
               </label>
               <input
-                type="tel"
+                type="number"
                 className="form-control"
                 placeholder="Ingrese # telefono cliente"
               />
